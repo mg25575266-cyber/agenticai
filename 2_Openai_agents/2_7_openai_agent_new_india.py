@@ -96,7 +96,7 @@ async def chat_with_rag(message, chat_history):
 
 # --- Gradio UI ---
 with gr.Blocks() as demo:
-    gr.Markdown("# 📄 Customer Support RAG Bot (PDF + Hugging Face + GPT-4o-mini)")
+    gr.Markdown("# Customer Support RAG Bot (PDF + Hugging Face + GPT-4o-mini)")
 
     chatbot = gr.Chatbot()
     msg = gr.Textbox(placeholder="Ask a question about New India Assurance policies...")

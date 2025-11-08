@@ -3,7 +3,8 @@ import numpy as np
 
 # Two sentences with similar meaning but different wording
 sentence_1 = "A man is playing a game of football."
-sentence_2 = "Someone is strumming a musical instrument."
+# sentence_2 = "Someone is strumming a musical instrument."
+sentence_2 = "Soccer is a popular sport."
 
 # Load the pretrained model
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')

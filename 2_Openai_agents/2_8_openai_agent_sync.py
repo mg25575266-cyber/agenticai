@@ -8,8 +8,8 @@ load_dotenv(override=True)
 
 # Define two agents with different instructions
 upi_agent = Agent(
-    name="Cross_Bodrer_Payments_Essay_Writer",
-    instructions="Write a clear, well-structured essay in 4 paragraphs about Cross Border Payments."
+    name="UPI_Essay_Writer",
+    instructions="Write a clear, well-structured essay in 4 paragraphs about UPI."
 )
 
 agent_api_agent = Agent(
@@ -20,10 +20,10 @@ agent_api_agent = Agent(
 start = time.time()
 
 # Run them sequentially (synchronous execution)
-print("Running Cross Border Payments Essay agent...")
+print("Running UPI Essay agent...")
 t1 = time.time()
 result1 = Runner.run_sync(upi_agent, "Write the essay now.")
-print(f"Cross Border Payments Essay completed in {time.time() - t1:.2f} seconds\n")
+print(f"UPI Essay completed in {time.time() - t1:.2f} seconds\n")
 
 print("Running Agent API Note agent...")
 t2 = time.time()

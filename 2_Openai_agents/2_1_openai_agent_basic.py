@@ -5,7 +5,8 @@ load_dotenv(override=True)
 
 instruction = "You are a helpful customer support analyst."
 message = ("Analyze this customer feedback and suggest improvements to the product: "
-           "'The packaging is great, but the delivery was delayed by two days.'")
+           # "'The packaging is great, but the delivery was delayed by two days.'")
+           "'The product was a bit stale'")
 
 agent = Agent(
     name="Assistant",

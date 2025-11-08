@@ -4,9 +4,13 @@ import asyncio
 from agents import Agent, Runner, function_tool
 
 load_dotenv(override=True)
-client = OpenAI()
 
-# --- Knowledge base ---
+# Enable OpenAI tracing (shows in https://platform.openai.com/logs?api=traces)
+client = OpenAI(
+    # The tracing flag enables automatic event recording
+    tracing={"enabled": True, "sample_rate": 1.0} # Sample 100% of traces
+)
+
 knowledge_base = {
     "shipping_time": "Our standard shipping time is 3-5 business days.",
     "return_policy": "You can return any product within 30 days of delivery.",
@@ -15,22 +19,20 @@ knowledge_base = {
     "customer_support": "You can reach our support team 24/7 via email or chat."
 }
 
-# --- Tool function ---
 @function_tool
 async def faq_invoker(topic: str) -> str:
-    """
-    Provides answers to frequently asked customer support questions.
-    """
+    """Provides answers to frequently asked customer support questions."""
     user_query = topic.lower()
     for topic_key, answer in knowledge_base.items():
         if topic_key in user_query:
             return answer
-    return (
+
+    fallback = (
         "I'm sorry, but I couldn't find specific information about that topic. "
         "Please check the company's website or contact customer support directly."
     )
+    return fallback
 
-# --- Main Agent ---
 faq_agent = Agent(
     name="Customer Support Bot",
     instructions=(
@@ -40,12 +42,10 @@ faq_agent = Agent(
     tools=[faq_invoker]
 )
 
-# --- Chat function ---
 async def chat_with_support(message):
     session = await Runner.run(faq_agent, message)
     return session.final_output
 
-# --- Loop ---
 async def main():
     print("Customer Support Bot is running. Type 'exit' to quit.")
     while True:

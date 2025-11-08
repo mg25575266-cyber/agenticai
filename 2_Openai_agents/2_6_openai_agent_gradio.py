@@ -90,7 +90,7 @@ async def chat_with_support(message, chat_history):
 
 # --- Gradio UI ---
 with gr.Blocks() as demo:
-    gr.Markdown("# 💬 Customer Support Bot")
+    gr.Markdown("# Customer Support Bot")
     chatbot = gr.Chatbot()
     msg = gr.Textbox(placeholder="Ask a question about our products or policies...")
     clear = gr.Button("Clear")
